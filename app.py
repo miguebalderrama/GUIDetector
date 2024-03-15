@@ -1,7 +1,11 @@
+from unittest import result
 import streamlit as st
 import numpy as np
 from PIL import Image
 import cv2
+from ultralytics import YOLO
+import matplotlib
+import matplotlib.pyplot as plt
 
 def cargar_imagen():
     imagen = st.file_uploader("Cargar imagen", type=["jpg", "jpeg", "png"])
@@ -11,9 +15,14 @@ def inferir_imagen(imagen):
     if imagen is not None:
         # Convertir la imagen a escala de grises
         img = Image.open(imagen)
-        img_array = np.array(img)
-        img_gris = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY)
-        return img_gris
+        #img = cv2.imread(imagen)
+        model = YOLO('C:/Users/Miguel/Desktop/GUI ModelMalezas/model/best.pt')
+        result = model(img)
+        detect_img = result[0].plot()
+        detect_img = cv2.cvtColor(detect_img, cv2.COLOR_BGR2RGB)
+        #img_array = np.array(img)
+        #img_gris = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY)        
+        return detect_img
     return None
 
 def main():
