@@ -43,10 +43,10 @@ def main():
             col1, col2 = st.columns(2)
 
             with col1:
-                st.image(Image.open(imagen), caption="Imagen Original", use_column_width=True)
+                st.image(Image.open(imagen), caption="Imagen Original", use_column_width=True, width=800)
 
             with col2:
-                st.image(img_gris, caption="Imagen Procesada", use_column_width=True)
+                st.image(img_gris, caption="Imagen Procesada", use_column_width=True, width=800)
 
 if __name__ == "__main__":
     main()
