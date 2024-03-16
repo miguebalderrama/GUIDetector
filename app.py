@@ -16,7 +16,7 @@ def inferir_imagen(imagen):
         # Convertir la imagen a escala de grises
         img = Image.open(imagen)
         #img = cv2.imread(imagen)
-        model = YOLO('/model/best.pt')
+        model = YOLO('model/best.pt')
         result = model(img)
         detect_img = result[0].plot()
         detect_img = cv2.cvtColor(detect_img, cv2.COLOR_BGR2RGB)
